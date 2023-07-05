@@ -1,0 +1,22 @@
+version: '3.3'
+services:
+    slowcoder:
+        image: 'ghcr.io/huggingface/text-generation-inference:0.9'
+
+        # gets appended to entrypoint
+        command: --model-id bigcode/starcoder
+        ports:
+            - '8089:80'
+        volumes:
+            - type: bind
+              source: ./models
+              target: /data
+
+        # #https://docs.docker.com/compose/gpu-support/
+        # deploy:
+        #   resources:
+        #     reservations:
+        #       devices:
+        #         - driver: nvidia
+        #           count: 1
+        #           capabilities: [gpu]
