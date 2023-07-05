@@ -3,4 +3,5 @@ run_starcoder:
 	-f ./infra/docker-compose.yml \
 	run \
 	-e HF_API_TOKEN=$$(secret-tool lookup api hf_read) \
+	--rm \
 	slowcoder
